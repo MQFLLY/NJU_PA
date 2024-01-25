@@ -18,6 +18,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <utils.h>
+#include <memory/paddr.h>
 #include "sdb.h"
 
 static int is_batch_mode = false;
@@ -82,6 +83,18 @@ static int cmd_info(char *args){
   return 0;
 }
 
+static int cmd_x(char *args){
+  int N;
+  unsigned int EXPR;
+  sscanf(args,"%d %x",&N,&EXPR);
+  paddr_t addr = EXPR;
+  for(int i = 0;i < N;i++){
+    printf("%x\n",paddr_read(addr,4));
+    addr += 4;
+  }
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -93,7 +106,8 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Execute the program N times and stop", cmd_si},
-  {"info","info r: print the register state\n info w: print the information of the watchpoint", cmd_info},
+  { "info","info r: print the register state\n info w: print the information of the watchpoint", cmd_info},
+  { "x", "calculate the value of expr, and print the N 4 bytes in hexadecmial from address of calculation result", cmd_x},
   /* TODO: Add more commands */
 
 };
