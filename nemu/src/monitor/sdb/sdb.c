@@ -53,12 +53,25 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args){
-  printf("%s\n",args);
+  int step = 0;
+  int len = strlen(args);
+  for(int i = 0;i < len;i++){
+    if(args[i] - '0' < 0 || args[i] - '0' > 9) assert("the input must be an integer!");
+    step = step * 10 + (args[i] - '0');
+  }
+  cpu_exec(step);
   return 0;
 }
 
 static int cmd_info(char *args){
-  printf("%s\n",args);
+  if(args[0] == 'r') {
+    isa_reg_display();
+    return 0;
+  }
+  else if(args[0] == 'w') {
+    return 0;
+  }
+  assert("the input must be either r or w");
   return 0;
 }
 
