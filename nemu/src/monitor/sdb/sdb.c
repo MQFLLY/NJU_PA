@@ -52,6 +52,16 @@ static int cmd_q(char *args) {
   return -1;
 }
 
+static int cmd_si(char *args){
+  printf("%s\n",args);
+  return 0;
+}
+
+static int cmd_info(char *args){
+  printf("%s\n",args);
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -62,7 +72,8 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  { "si", "Execute the program N times and stop", cmd_si},
+  {"info","info r: print the register state\n info w: print the information of the watchpoint", cmd_info},
   /* TODO: Add more commands */
 
 };
