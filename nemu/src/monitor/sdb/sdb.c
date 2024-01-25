@@ -56,10 +56,15 @@ static int cmd_q(char *args) {
 
 static int cmd_si(char *args){
   int step = 0;
-  int len = strlen(args);
-  for(int i = 0;i < len;i++){
-    if(args[i] - '0' < 0 || args[i] - '0' > 9) assert("the input must be an integer!");
-    step = step * 10 + (args[i] - '0');
+  if(args == NULL) {
+    step = 1;
+  }
+  else {
+    int len = strlen(args);
+    for(int i = 0;i < len;i++){
+      if(args[i] - '0' < 0 || args[i] - '0' > 9) assert("the input must be an integer!");
+      step = step * 10 + (args[i] - '0');
+    }
   }
   cpu_exec(step);
   return 0;
