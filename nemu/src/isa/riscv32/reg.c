@@ -26,10 +26,17 @@ const char *regs[] = {
 void isa_reg_display() {
   int len = 32;
   for(int i = 0;i < len;i++){
-    printf("%s:  %p  %d\n",regs[i],cpu.gpr,cpu.gpr[i]);
+    printf("%s:  %p  %d\n",regs[i],cpu.gpr + i,cpu.gpr[i]);
   }
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
+  if(s[0] == '$' && s[1] == '0') {
+    return 0;
+  }
+  for(int i = 1;i < 32;i++){
+    if(strcmp(s + 1,regs[i]) == 0) return cpu.gpr[i];
+  }
+  success = 0;
   return 0;
 }
