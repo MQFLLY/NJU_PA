@@ -241,7 +241,7 @@ word_t expr(char *e, bool *success) {
       tokens[i].type = TK_NEG;
   }
   for(int i = 0;i < nr_token;i++){
-    printf("%c %s\n",tokens[i].type,tokens[i].str);
+    printf("%s\n",tokens[i].str);
   }
   word_t res = eval(0,nr_token - 1);
   printf("%d\n",res);
