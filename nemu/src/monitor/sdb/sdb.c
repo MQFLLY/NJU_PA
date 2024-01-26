@@ -95,6 +95,13 @@ static int cmd_x(char *args){
   return 0;
 }
 
+static int cmd_p(char *args){
+  bool f = 1;
+  expr(args,&f);
+  if(!f) return 0;
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -108,6 +115,7 @@ static struct {
   { "si", "Execute the program N times and stop", cmd_si},
   { "info","info r: print the register state\n info w: print the information of the watchpoint", cmd_info},
   { "x", "calculate the value of expr, and print the N 4 bytes in hexadecmial from address of calculation result", cmd_x},
+  { "p", "calculate the expression", cmd_p},
   /* TODO: Add more commands */
 
 };
