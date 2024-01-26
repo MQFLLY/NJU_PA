@@ -50,7 +50,7 @@ static struct rule {
   {"\\b[0-9]+\\b", TK_NUM}, //num
   {"\\(", '('},         // left
   {"\\)", ')'},         // right
-  {"\\$(0|ra|sp|gp|tp|t[0-6]|s([0-9]|1[01])|a[0-7])$",TK_REG}, //register
+  {"\\$(0|ra|sp|gp|tp|t[0-6]|s([0-9]|1[01])|a[0-7])",TK_REG}, //register
   {"\\b0[xX][0-9a-fA-F]+\\b",TK_HEX},  //hex
 };
 
@@ -240,12 +240,11 @@ word_t expr(char *e, bool *success) {
     if(tokens[i].type == '-' && (i == 0 || (tokens[i - 1].type == '(' || tokens[i - 1].type == TK_DREF || tokens[i - 1].type == '+' || tokens[i - 1].type == '-' || tokens[i - 1].type == '*' || tokens[i - 1].type == '/')))
       tokens[i].type = TK_NEG;
   }
-  
   /*
   for(int i = 0;i < nr_token;i++){
     printf("%s\n",tokens[i].str);
   }*/
-
+  
   word_t res = eval(0,nr_token - 1);
   printf("%d\n",res);
   return res;
