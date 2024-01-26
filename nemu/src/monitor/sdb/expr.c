@@ -240,5 +240,7 @@ word_t expr(char *e, bool *success) {
     if(tokens[i].type == '-' && (i == 0 || (tokens[i - 1].type == '(' || tokens[i - 1].type == TK_DREF || tokens[i - 1].type == '+' || tokens[i - 1].type == '-' || tokens[i - 1].type == '*' || tokens[i - 1].type == '/')))
       tokens[i].type = TK_NEG;
   }
-  return eval(0,nr_token - 1);
+  word_t res = eval(0,nr_token - 1);
+  printf("%d\n",res);
+  return res;
 }
