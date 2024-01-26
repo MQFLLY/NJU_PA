@@ -44,7 +44,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // non-equal
   {"&&", TK_AND},       // and
-  {"||", TK_OR},        // or
+  {"\\|\\|", TK_OR},        // or
   {"\\*", '*'},         // mul
   {"/", '/'},           // div
   {"\\b[0-9]+\\b", TK_NUM}, //num
