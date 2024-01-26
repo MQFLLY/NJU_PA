@@ -240,7 +240,7 @@ word_t expr(char *e, bool *success) {
     if(tokens[i].type == '-' && (i == 0 || (tokens[i - 1].type == '(' || tokens[i - 1].type == TK_DREF || tokens[i - 1].type == '+' || tokens[i - 1].type == '-' || tokens[i - 1].type == '*' || tokens[i - 1].type == '/')))
       tokens[i].type = TK_NEG;
   }
-  for(int i = 0;i < nr_token - 1;i++){
+  for(int i = 0;i < nr_token;i++){
     printf("%c %s\n",tokens[i].type,tokens[i].str);
   }
   word_t res = eval(0,nr_token - 1);
