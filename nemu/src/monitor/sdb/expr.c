@@ -50,7 +50,7 @@ static struct rule {
   {"\\b[0-9]+\\b", TK_NUM}, //num
   {"\\(", '('},         // left
   {"\\)", ')'},         // right
-  {"^\\$(?:0|ra|sp|gp|tp|t[0-6]|s([0-9]|1[0-1])|a[0-7])$",TK_REG}, //register
+  {"^\\$(?:0|ra|sp|gp|tp|t[0-6]|s(?:[0-9]|1[0-1])|a[0-7])$",TK_REG}, //register
   {"\\b0[xX][0-9a-fA-F]+\\b",TK_HEX},  //hex
 };
 
